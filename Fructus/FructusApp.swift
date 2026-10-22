@@ -10,12 +10,17 @@ import CoreData
 
 @main
 struct FructusApp: App {
-    let persistenceController = PersistenceController.shared
-
+    @AppStorage("isOnboarding") var isOnboarding: Bool = true
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+            if isOnboarding {
+                OnBoardingView()
+            } else {
+                ContentView()
+
+            }
+                
         }
     }
 }
